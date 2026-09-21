@@ -11,9 +11,13 @@ const App = () => {
     const copyTask = [...task];
     copyTask.push({ Title, Detail });
     setTask(copyTask);
-
     setTitle("");
     setDetail("");
+  };
+  const deleteNote = (idx) => {
+    const copyTask = [...task];
+    copyTask.splice(idx, 1);
+    setTask(copyTask);
   };
 
   return (
@@ -56,11 +60,24 @@ const App = () => {
             return (
               <div
                 key={idx}
-                className="h-52 w-40 rounded text-black bg-white p-4"
+                className="flex justify-between flex-col items-start relative h-52 w-40 rounded text-black bg-cover bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjUjZmOg4PCiwM4pN8YHaMv-mu4FR6dmbMv0MdNQKmEA&s=10')]  pt-9 pb-4 px-4"
               >
-                <h3 className="leading-tight text-xl font-bold">
-                  {elem.Title}
-                </h3>
+                <div>
+                  <h3 className="leading-tight text-xl font-bold">
+                    {elem.Title}
+                  </h3>
+                  <p className="mt-2 leading-tight font-medium text-gray-700">
+                    {elem.Detail}
+                  </p>
+                </div>
+                <button
+                  onClick={() => {
+                    deleteNote(idx);
+                  }}
+                  className="w-full bg-red-600  curspr-pointer active:scale-95 py-1 text-xs rounded font-bold text-white"
+                >
+                  Delete notes
+                </button>
               </div>
             );
           })}
