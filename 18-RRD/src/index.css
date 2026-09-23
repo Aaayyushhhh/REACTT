@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: white;
   font-family: "helvetica neue";
 }
 html,
@@ -12,6 +13,7 @@ body {
 body {
   background-color: black;
 }
+
 h1 {
   position: absolute;
   top: 50%;
@@ -21,13 +23,15 @@ h1 {
   white-space: nowrap;
   text-decoration: underline;
 }
+
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px 40px;
-  background-color: rgba(0, 255, 255, 0.303);
+  background-color: rgb(10, 117, 146);
 }
+
 .nav div {
   display: flex;
   align-items: center;
