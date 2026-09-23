@@ -1,45 +1,45 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Card from "./Components/Card";
+import Buttons from "./Components/Buttons";
+import GetDataButton from "./Components/GetDataButton";
 
 const App = () => {
+  const [Index, setIndex] = useState(1);
   const [UserData, setUserData] = useState([]);
   const getData = async () => {
     const responce = await axios.get(
-      "https://picsum.photos/v2/list?page=3&limit=30",
+      `https://picsum.photos/v2/list?page=${Index}&limit=30`,
     );
     setUserData(responce.data);
   };
+  (useEffect(function () {
+    getData();
+  }),
+    [Index]);
 
-  let printUserData = "No user avialable";
+  let printUserData = (
+    <h3 className="text-gray-400 absolute top-1/2 left-1/2 transalte-x-1/2 transalte-y-1/2">
+      loading...
+    </h3>
+  );
   if (UserData.length > 0) {
     printUserData = UserData.map(function (elem, idx) {
       return (
-        <a href={elem.url} target="_blank">
-          <div key={idx}>
-            <div className="h-40 w-44 overflow-hidden bg-white rounded-xl">
-              <img
-                className="h-full w-full object-cover"
-                src={elem.download_url}
-                alt=""
-              />
-            </div>
-            <h2 className="font-bold text-lg">{elem.author}</h2>
-          </div>
-        </a>
+        <div key={idx}>
+          <Card elem={elem} />
+        </div>
       );
     });
   }
 
   return (
-    <div className="overflow-auto bg-black h-screen p-4 text-white">
-      <button
-        className="bg-green-600 active:scale-95 px-5 py-2 rounded text-white"
-        onClick={getData}
-      >
-        GET DATA
-      </button>
+    <div className=" bg-black overflow-auto h-screen  text-white">
+      <h1>{Index}</h1>
+      <GetDataButton getData={getData} />
 
-      <div className="flex flex-wrap gap-3">{printUserData}</div>
+      <div className="flex  h-[82%] flex-wrap gap-4 p-2">{printUserData}</div>
+      <Buttons Index={Index} />
     </div>
   );
 };
