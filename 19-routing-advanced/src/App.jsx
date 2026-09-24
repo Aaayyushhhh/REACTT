@@ -8,18 +8,25 @@ import { Route, Routes } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import Men from "./pages/Men";
 import Women from "./pages/Women";
+import Courses from "./pages/Courses";
+import CoursesDetails from "./pages/CoursesDetails";
+import Nav2 from "./components/Nav2";
 
 const App = () => {
   return (
     <div className="h-screen bg-black text-white">
       <Navbar />
+      <Nav2 />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/Product" element={<Product />} />
-        <Route path="/Product/Men" element={<Men />} />
-        <Route path="/Product/Women" element={<Women />}></Route>
-
+        <Route path="/Product" element={<Product />}>
+          <Route path="Men" element={<Men />} />{" "}
+          {/* Ways to perform nested routing*/}
+          <Route path="Women" element={<Women />} />
+        </Route>
+        <Route path="/courses" element={<Courses />} />
+        <Route path="/courses/:courseId" element={<CoursesDetails />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

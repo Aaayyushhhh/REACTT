@@ -15,6 +15,9 @@ const Navbar = () => {
         <Link className="text-lg font-medium" to="/Product">
           Product
         </Link>
+        <Link className="text-lg font-medium" to="/courses">
+          Courses Page
+        </Link>
       </div>
     </div>
   );
