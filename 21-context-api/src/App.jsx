@@ -1,13 +1,15 @@
 import React from "react";
-import { useState } from "react";
 import Navbar from "./components/Navbar";
+import { useState } from "react";
 
 const App = () => {
   const [theme, settheme] = useState("light");
   return (
     <div>
-      <h1>Theme is {theme}</h1>
-      <Navbar theme={theme} settheme={settheme} /> {/*data centralization*/}
+      <Navbar theme={theme}>
+        <h2>This is the navbar</h2>. {/*This is children as a props passing */}
+        <h3>This is 12333</h3>
+      </Navbar>
     </div>
   );
 };
